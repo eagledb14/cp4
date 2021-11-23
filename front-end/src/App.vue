@@ -1,10 +1,14 @@
 <template>
   <div id="app">
     <div id="nav">
+			<div class="nav-box">
+				<h1>Creature Fighter</h1>
+			</div>
       <div class="nav-box">
 				<router-link to="/">Home</router-link> |
-  	    <router-link to="/about">About</router-link>
-			</div>
+				<router-link to="/Add">Display</router-link> |
+				<router-link to="/Fight">Fight</router-link>
+      </div>
     </div>
     <router-view/>
   </div>
@@ -15,7 +19,6 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-
 }
 
 #app {
@@ -23,14 +26,15 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
 }
 
 #nav {
   width: 100%;
+	height: 50px;
 	background-color: #960c0c; 
 	display: flex;
-	justify-content: flex-end;
+	justify-content: space-around;
+	align-items: center;
 }
 
 #nav a {
@@ -43,7 +47,10 @@
 }
 
 .nav-box {
-	padding: 30px 10%;
+	display: flex;
+	align-items: center;
+	height: 100%;
+	padding: 0 10%;
 	background-color: #677077;
 }
 </style>
