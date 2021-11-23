@@ -4,8 +4,6 @@
 const app = express();
 
 
-
-
 app.get("/api/", async (req, res) => {
   console.log("received");
   res.send("received");
