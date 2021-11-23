@@ -25,7 +25,8 @@ export default {
   methods: {
     async getWord() {
       try {
-        this.word = await axios.get("/api/");
+        let response = await axios.get("/api/");
+        this.word = response.data;
       }
       catch(err) {
         console.log(err);
