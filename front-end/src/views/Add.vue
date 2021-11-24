@@ -12,12 +12,14 @@
 
 		<!--create new creatire-->
 		<button class="create" v-on:click="canAdd = true">+ create new creature</button>
-		<form v-if="canAdd" v-on:submit.prevent="addCreature()">
-			<input type="text" v-model="newName" placeholder="name">
-			<textarea v-model="newDesc" placeholder="Description"></textarea>
-			<input type="file" name="photo" @change="fileChanged">
-			<button type= "submit">Add</button>
-		</form>
+		<div class="form-container">
+			<form class="form" v-if="canAdd" v-on:submit.prevent="addCreature()">
+				<input type="text" v-model="newName" placeholder="name">
+				<textarea v-model="newDesc" placeholder="Description"></textarea>
+				<input type="file" name="photo" @change="fileChanged">
+				<button type= "submit">Add</button>
+			</form>
+		</div>
   </div>
 </template>
 
@@ -109,6 +111,17 @@
 .creature-img {
 	max-width: 400px;
 	max-height: 400px;
+}
+
+.form-container {
+	display: flex;
+	justify-content: center;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	width: 20%;	
 }
 
 </style>

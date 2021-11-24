@@ -11,6 +11,14 @@
       </div>
     </div>
     <router-view/>
+
+
+		<div class="footer-container">
+			<div class="footer">
+				<a class="footer-item" target="_blank" href="https://github.com/eagledb14/cp4">Github</a>
+			</div>
+		</div>
+
   </div>
 </template>
 
@@ -40,6 +48,7 @@
 #nav a {
   font-weight: bold;
   color: #2c3e50;
+	text-decoration: none;
 }
 
 #nav a.router-link-exact-active {
@@ -53,4 +62,43 @@
 	padding: 0 10%;
 	background-color: #677077;
 }
+
+.title {
+	margin-top: 20px;
+}
+
+.creature {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.creature-img {
+	max-width: 400px;
+	max-height: 400px;
+}
+
+.footer-container {	
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	margin-top: 25%;
+	background-color: #960c0c;
+}
+
+.footer {
+	display: flex;
+	justify-content: center;
+	background-color: #677077;
+}
+
+.footer-item {
+	padding: 10px;
+	text-decoration: none;
+}
+
+.footer-item > a {
+	text-decoration: none;
+}
+
 </style>
