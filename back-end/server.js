@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 const upload = multer({
-	dest: '../images/',
+	dest: '../front-end/public/images/',
   limits: {
     fileSize: 10000000
   }

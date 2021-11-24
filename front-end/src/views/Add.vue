@@ -1,12 +1,16 @@
 <template>
   <div class="Add">
     <h1 class="title">Results</h1>
-	<!--	<div v-for="creature in creaturesInOrder :key="item.name">
-			<div>{{ creature.name }} </div>
-			<div> {{ creature.desc }} </div>-->
+		<ol v-for="creature in creaturesInOrder" :key="creature.id">
+			<li>
+				<h2 class="creature-name">{{ creature.name }} </h2>
+				<img class="creature-display" :src="creature.path"> 
+				<p class="desc"> "{{ creature.desc }}" </p>
+			</li>	
+		</ol>
 
 		<!--create new creatire-->
-		<button class="create" v-on:click="canAdd = orue">+ create new creature</button>
+		<button class="create" v-on:click="canAdd = true">+ create new creature</button>
 		<form v-if="canAdd" v-on:submit.prevent="addCreature()">
 			<input type="text" v-model="newName" placeholder="name">
 			<textarea v-model="newDesc" placeholder="Description"></textarea>
@@ -57,10 +61,8 @@
 			},
 			async getCreatures() {
 				try {
-					//let response = await axios.get('/api/creature');
-					//this.creatures = response.data;
-					//console.log(response.data);
-					console.log( await axios.get('/api/creature'));
+					let response = await axios.get('/api/creature');
+					this.creatures = response.data;
 				}
 				catch(err) {
 					console.log(err);
@@ -85,6 +87,11 @@
 
 .title {
 	margin-top: 20px;
+}
+
+.creature-display {
+	max-width: 400px;
+	max-height: 400px;
 }
 
 </style>
