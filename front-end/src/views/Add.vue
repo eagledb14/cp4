@@ -1,13 +1,14 @@
 <template>
   <div class="Add">
     <h1 class="title">Results</h1>
-		<ol v-for="creature in creaturesInOrder" :key="creature.id">
-			<li>
+		<div class="creature" v-for="creature in creaturesInOrder" :key="creature.id">
+			<div class="creature-display">
 				<h2 class="creature-name">{{ creature.name }} </h2>
-				<img class="creature-display" :src="creature.path"> 
+				<img class="creature-img" :src="creature.path"> 
 				<p class="desc"> "{{ creature.desc }}" </p>
-			</li>	
-		</ol>
+			</div>
+				<button @click="deleteCreature(creature)">X</button>
+		</div>
 
 		<!--create new creatire-->
 		<button class="create" v-on:click="canAdd = true">+ create new creature</button>
@@ -45,7 +46,7 @@
 					const formData = new FormData();
 					formData.append('photo', this.file, this.file.name);
 					let r1 = await axios.post('/api/photo', formData);
-					await axios.post('/api/creature', {
+					let r2 = await axios.post('/api/creature', {
 						name: this.newName,
 						desc: this.newDesc,
 						path: r1.data.path
@@ -53,7 +54,8 @@
 					this.canAdd=false;
 					this.newName = "";
 					this.newDesc = "",
-					this.getCreatures();
+					//this.getCreatures();
+					this.creatures.push(r2.data);
 				}
 				catch (err) {
 					console.log(err);
@@ -68,6 +70,15 @@
 					console.log(err);
 				}
 			},
+			async deleteCreature(creature) {
+				try {
+					await axios.delete('/api/creature/' + creature._id);
+					this.getCreatures();
+				}
+				catch(err) {
+					console.log(err);
+				}	
+			},	
 		},
 		computed: {
 			creaturesInOrder() {
@@ -89,7 +100,13 @@
 	margin-top: 20px;
 }
 
-.creature-display {
+.creature {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.creature-img {
 	max-width: 400px;
 	max-height: 400px;
 }

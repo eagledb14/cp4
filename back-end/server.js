@@ -46,9 +46,8 @@ app.post('/api/photo', upload.single('photo'), async (req, res) => {
 	res.send({	path: '/images/' + req.file.filename});
 });
 
-app.post("/api/creature", (req, res) => {
-	console.log(req.body);
-	res.sendStatus(200);	
+app.post("/api/creature", async (req, res) => {
+	//console.log(req.body);
 	const creature = new Creature({
 		name: req.body.name,
 		desc: req.body.desc,
@@ -59,12 +58,13 @@ app.post("/api/creature", (req, res) => {
 	});
 
 	try{
-		creature.save();
-		console.log(creature);
+		await creature.save();
+		res.send(creature);
+		//console.log(creature);
 	}
 	catch(err) {
 		console.log(err);
-		res.send(500);
+		res.sendStatus(500);
 	}	
 });
 
@@ -72,10 +72,10 @@ app.post("/api/creature", (req, res) => {
 //read creatures
 
 
-app.get('/api/creature', async (req, res) => {
+app.get('/api/creature', async (req, res) => { //read every creature in the database
 	try {
 		let creatures = await Creature.find();
-		console.log('creatures sent');
+		//console.log('creatures sent');
 		res.send(creatures);
 	}
 	catch(err) {
@@ -83,6 +83,28 @@ app.get('/api/creature', async (req, res) => {
 		res.sendStatus(500);
 	}
 });
+
+
+//add reading single creature
+
+
+
+//delete creature
+
+app.delete('/api/creature/:id', async (req, res) => {
+	try {
+		await Creature.deleteOne({
+			_id: req.params.id
+		});
+		res.sendStatus(200);
+	}
+	catch (err) {
+		console.log(err);
+		res.sendStatus(500);
+	}
+});
+
+
 
 
 app.listen(3000, () => console.log("Listening on port 3000"));
