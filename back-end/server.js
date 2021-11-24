@@ -72,6 +72,17 @@ app.post("/api/creature", (req, res) => {
 //read creatures
 
 
+app.get('/api/creature', async (req, res) => {
+	try {
+		let creatures = await Creature.find();
+		console.log('creatures sent');
+		res.send(creatures);
+	}
+	catch(err) {
+		console.log(err);
+		res.sendStatus(500);
+	}
+});
 
 
 app.listen(3000, () => console.log("Listening on port 3000"));
