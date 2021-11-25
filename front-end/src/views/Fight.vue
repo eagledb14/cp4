@@ -29,11 +29,11 @@
 		</div>
 
 		<div v-if="canStart">
-			<div class="results" v-if="winner > 0">
+			<div class="results" v-if="winner >= 0">
 				<h1 class="winner">Winner</h1>
 				<h1 class="loser">Loser</h1>	
 			</div>
-			<div class="results" v-else-if="winner < 1">
+			<div class="results" v-else-if="winner < 0">
 				<h1 class="loser">Loser</h1>
 				<h1 class="winner">Winner</h1>
 			</div>
@@ -156,8 +156,8 @@ export default {
 .fighters {
   display: flex;
   justify-content: space-around;
-  border-top: 3px solid black;
-	border-bottom: 3px solid black;
+  border-top: 3px solid #E8E6E3;
+  border-bottom: 3px solid #E8E6E3;
 }
 
 .dice {

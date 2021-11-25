@@ -7,7 +7,11 @@
 				<img class="creature-img" :src="creature.path"> 
 				<p class="desc"> "{{ creature.desc }}" </p>
 			</div>
-				<button @click="deleteCreature(creature)">X</button>
+			<div>
+				<h3> Wins: {{ creature.win }}</h3>
+				<h3> Losses: {{ creature.loss }}</h3>
+			</div>
+			<button @click="deleteCreature(creature)">X</button>
 		</div>
 
 		<!--create new creature-->
@@ -26,7 +30,7 @@
 		<!--update creature-->
 		<button class="create" @click="canUpdate = !canUpdate; canAdd = false">update creature</button>
 		<div class="form-container" v-if="canUpdate">
-			<form class="form" v-on:submit.prevent="updateCreatue()">
+			<form class="form" v-on:submit.prevent="updateCreature()">
 				<h1>Update</h1>
 				<input type="text" v-model="newName" placeholder="name">
 				<textarea v-model="newDesc" placeholder="Description"></textarea>
@@ -130,6 +134,7 @@
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
+	padding: 20px;
 }
 
 .creature-img {

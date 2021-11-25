@@ -31,12 +31,17 @@
 	padding: 0;
 	box-sizing: border-box;
 }
+body {
+	background-color: #181A1B;
+}
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  background-color: #181A1B;
+  color: #E8E6E3;
 }
 
 #nav {
@@ -64,6 +69,12 @@
 	height: 100%;
 	padding: 0 10%;
 	background-color: #677077;
+}
+
+button {
+	font-size: 1.3em;
+	padding: 5px;
+	margin-top: 10px;
 }
 
 .title {
