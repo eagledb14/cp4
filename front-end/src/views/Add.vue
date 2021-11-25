@@ -19,7 +19,7 @@
 		<div class="form-container">
 			<form class="form" v-if="canAdd" v-on:submit.prevent="addCreature()">
 				<h1>Add</h1>
-				<input type="text" v-model="newName" placeholder="name">
+				<input type="text" v-model="newName" placeholder="Name">
 				<textarea v-model="newDesc" placeholder="Description"></textarea>
 				<input type="file" name="photo" @change="fileChanged">
 				<button type= "submit">Add</button>
@@ -27,16 +27,16 @@
 		</div>
 
 
-		<!--update creature-->
+		<!--update creature
 		<button class="create" @click="canUpdate = !canUpdate; canAdd = false">update creature</button>
 		<div class="form-container" v-if="canUpdate">
 			<form class="form" v-on:submit.prevent="updateCreature()">
 				<h1>Update</h1>
-				<input type="text" v-model="newName" placeholder="name">
+				<input type="text" v-model="newName" placeholder="Name">
 				<textarea v-model="newDesc" placeholder="Description"></textarea>
 				<button type= "submit">Update</button>
 			</form>
-		</div>
+		</div>-->
 
   </div>
 </template>
@@ -151,6 +151,15 @@
 	display: flex;
 	flex-direction: column;
 	width: 20%;	
+}
+
+
+
+@media only screen and (max-width:650px) {
+	.form {
+		width: 70%;
+	}
+
 }
 
 </style>
