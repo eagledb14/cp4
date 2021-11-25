@@ -87,6 +87,34 @@ app.get('/api/creature', async (req, res) => { //read every creature in the data
 
 //add reading single creature
 
+//update creature
+
+app.put('/api/creature/:id', async (req, res) => {
+	let creature;
+	try {
+		creature = Creature.findById(req.params.id, (err, post) => {
+		      if (!err) {
+		      	return post;
+		      }
+		});
+		creature.updateOne({
+			name: req.body.name,
+        	        desc: req.body.desc,
+        		path: req.body.path,
+            		strength: req.body.strength,
+             		win: req.body.win,
+                	loss: req.body.loss
+		});
+		res.sendStatus(200);
+	}
+	catch(err) {
+		console.log(err);
+		res.sendStatus(500);
+	}
+
+});
+
+
 
 
 //delete creature

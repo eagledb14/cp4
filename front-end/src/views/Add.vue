@@ -10,7 +10,7 @@
 				<button @click="deleteCreature(creature)">X</button>
 		</div>
 
-		<!--create new creatire-->
+		<!--create new creature-->
 		<button class="create" v-on:click="canAdd = !canAdd; canUpdate = false">+ create new creature</button>
 		<div class="form-container">
 			<form class="form" v-if="canAdd" v-on:submit.prevent="addCreature()">
@@ -25,14 +25,12 @@
 
 		<!--update creature-->
 		<button class="create" @click="canUpdate = !canUpdate; canAdd = false">update creature</button>
-		<div class="form-container">
-			<form class="form" v-if="canUpdate" v-on:submit.prevent="updateCreatue()">
-				<div class="suggestion" v-for="c in creatures" :key="c._id" @click="selectItem(c)">{{c.title}}</div>
+		<div class="form-container" v-if="canUpdate">
+			<form class="form" v-on:submit.prevent="updateCreatue()">
 				<h1>Update</h1>
 				<input type="text" v-model="newName" placeholder="name">
-        <textarea v-model="newDesc" placeholder="Description"></textarea>
-        <input type="file" name="photo" @change="fileChanged">
-        <button type= "submit">Add</button>
+				<textarea v-model="newDesc" placeholder="Description"></textarea>
+				<button type= "submit">Update</button>
 			</form>
 		</div>
 
@@ -98,11 +96,20 @@
 					console.log(err);
 				}	
 			},	
+			async updateCreature() {
+				try {
+					console.log('update not finished');	
+				}
+				catch(err) {
+					console.log(err);
+				}
+			},
 		},
 		computed: {
 			creaturesInOrder() {
-				//return this.creatures.sort((a,b) => {return (b.win - b.loss ) - (a.win - a.loss);});
-				return this.creatures;
+				return this.creatures.sort((a,b) => {
+					return (b.win - b.loss ) - (a.win - a.loss);
+				});
 			}
 		},
 		created() {
