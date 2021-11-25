@@ -22,6 +22,9 @@
   </div>
 </template>
 
+//blue: 2B7F7F
+//greenish yellow: 7CA922
+
 <style>
 * {
 	margin: 0;

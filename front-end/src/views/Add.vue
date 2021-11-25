@@ -11,15 +11,31 @@
 		</div>
 
 		<!--create new creatire-->
-		<button class="create" v-on:click="canAdd = true">+ create new creature</button>
+		<button class="create" v-on:click="canAdd = !canAdd; canUpdate = false">+ create new creature</button>
 		<div class="form-container">
 			<form class="form" v-if="canAdd" v-on:submit.prevent="addCreature()">
+				<h1>Add</h1>
 				<input type="text" v-model="newName" placeholder="name">
 				<textarea v-model="newDesc" placeholder="Description"></textarea>
 				<input type="file" name="photo" @change="fileChanged">
 				<button type= "submit">Add</button>
 			</form>
 		</div>
+
+
+		<!--update creature-->
+		<button class="create" @click="canUpdate = !canUpdate; canAdd = false">update creature</button>
+		<div class="form-container">
+			<form class="form" v-if="canUpdate" v-on:submit.prevent="updateCreatue()">
+				<div class="suggestion" v-for="c in creatures" :key="c._id" @click="selectItem(c)">{{c.title}}</div>
+				<h1>Update</h1>
+				<input type="text" v-model="newName" placeholder="name">
+        <textarea v-model="newDesc" placeholder="Description"></textarea>
+        <input type="file" name="photo" @change="fileChanged">
+        <button type= "submit">Add</button>
+			</form>
+		</div>
+
   </div>
 </template>
 
@@ -33,6 +49,7 @@
 		data() {
 			return {
 				canAdd: false,
+				canUpdate: false,
 				creatures: [],
 				file: null,
 				newName: "",
